@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JOAN OF ARC welding</title>
+  <!-- Google Fonts: Casual headline font + Cursive font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-pale-yellow: #fbf8e8;
+      --card-pale-yellow: #f4efd5;
+      --text-dark-green: #143621;
+      --text-muted-green: #295636;
+      --accent-pink: #e6396f;
+      --accent-pink-hover: #cf2257;
+      --border-green: #d1dcce;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comfortaa', cursive, sans-serif;
+      background-color: var(--bg-pale-yellow);
+      color: var(--text-dark-green);
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      border-bottom: 2px dashed var(--accent-pink);
+      padding-bottom: 12px;
+    }
+
+    .brand-main {
+      font-family: 'Comfortaa', cursive, sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-dark-green);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-sub {
+      font-family: 'Caveat', cursive;
+      font-size: 38px;
+      color: var(--accent-pink);
+      transform: rotate(-3deg);
+      display: inline-block;
+    }
+
+    .dashboard {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .panel {
+      background: var(--card-pale-yellow);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border-green);
+      box-shadow: 0 4px 14px rgba(20, 54, 33, 0.06);
+    }
+
+    .controls {
+      flex: 1;
+      min-width: 320px;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .results {
+      flex: 2;
+      min-width: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+      color: var(--text-dark-green);
+    }
+
+    h3 {
+      margin: 0 0 10px 0;
+      font-size: 15px;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted-green);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    select, input[type="range"] {
+      width: 100%;
+    }
+
+    select {
+      font-family: inherit;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-green);
+      background: var(--bg-pale-yellow);
+      color: var(--text-dark-green);
+      font-weight: bold;
+    }
+
+    input[type="range"] {
+      accent-color: var(--accent-pink);
+      cursor: pointer;
+    }
+
+    .metric-value {
+      color: var(--accent-pink);
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--bg-pale-yellow);
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-green);
+      box-shadow: 0 2px 6px rgba(20, 54, 33, 0.04);
+    }
+
+    .card p {
+      margin: 6px 0;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-dark-green);
+    }
+
+    .card span {
+      font-weight: bold;
+      color: var(--accent-pink);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="brand-main">JOAN OF ARC</span>
+    <span class="brand-sub">welding</span>
+  </header>
+
+  <div class="dashboard">
+    <!-- Controls Panel -->
+    <div class="panel controls">
+      <h2>Process Parameters</h2>
+      <div>
+        <label for="alloy-select">Alloy System</label>
+        <select id="alloy-select"></select>
+      </div>
+      <div>
+        <label>Current: <span id="val-current" class="metric-value">200 A</span></label>
+        <input id="input-current" type="range" min="80" max="350" value="200" step="5">
+      </div>
+      <div>
+        <label>Voltage: <span id="val-voltage" class="metric-value">26 V</span></label>
+        <input id="input-voltage" type="range" min="15" max="35" value="26" step="0.5">
+      </div>
+      <div>
+        <label>Travel Speed: <span id="val-speed" class="metric-value">5 mm/s</span></label>
+        <input id="input-speed" type="range" min="1" max="15" value="5" step="0.5">
+      </div>
+      <div>
+        <label>Wire Feed Speed: <span id="val-wfs" class="metric-value">80 mm/s</span></label>
+        <input id="input-wfs" type="range" min="30" max="200" value="80" step="5">
+      </div>
+      <div>
+        <label>Plate Thickness: <span id="val-thick" class="metric-value">10 mm</span></label>
+        <input id="input-thick" type="range" min="1" max="30" value="10" step="1">
+      </div>
+    </div>
+
+    <!-- Output Panel -->
+    <div class="panel results">
+      <h2>Prediction Dashboard</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Thermal History</h3>
+          <p>Cooling Time (t8/5): <span id="out-t85">--</span></p>
+          <p>Cooling Rate: <span id="out-cr">--</span></p>
+          <p>Heat Flow Regime: <span id="out-regime">--</span></p>
+        </div>
+        <div class="card">
+          <h3>Bead Profile</h3>
+          <p>Width: <span id="out-bw">--</span></p>
+          <p>Penetration Depth: <span id="out-pen">--</span></p>
+          <p>Base Dilution: <span id="out-dil">--</span></p>
+        </div>
+        <div class="card">
+          <h3>Mechanical State</h3>
+          <p>Vickers Hardness: <span id="out-hv">--</span></p>
+          <p>Yield Strength: <span id="out-ys">--</span></p>
+          <p>Ultimate Tensile: <span id="out-uts">--</span></p>
+        </div>
+        <div class="card">
+          <h3>Integrity & Defects</h3>
+          <p>Solidification Crack: <span id="out-hot">--</span></p>
+          <p>Hydrogen Cold Crack: <span id="out-cold">--</span></p>
+          <p>Lack of Fusion Risk: <span id="out-lof">--</span></p>
+          <p>Quality Score: <span id="out-qual">--</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { DynamicICMEWeldPredictor } from './index.js';
+
+    let database = {};
+    let predictor = null;
+
+    async function init() {
+      const res = await fetch('./open_alloys.json');
+      database = await res.json();
+
+      const select = document.getElementById('alloy-select');
+      Object.keys(database).forEach(key => {
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = database[key].name;
+        select.appendChild(opt);
+      });
+
+      select.value = 'S355_Steel';
+      predictor = new DynamicICMEWeldPredictor(database[select.value]);
+
+      select.addEventListener('change', (e) => {
+        predictor = new DynamicICMEWeldPredictor(database[e.target.value]);
+        runSim();
+      });
+
+      ['current', 'voltage', 'speed', 'wfs', 'thick'].forEach(id => {
+        document.getElementById(`input-${id}`).addEventListener('input', runSim);
+      });
+
+      runSim();
+    }
+
+    function runSim() {
+      if (!predictor) return;
+
+      const I = parseFloat(document.getElementById('input-current').value);
+      const V = parseFloat(document.getElementById('input-voltage').value);
+      const S = parseFloat(document.getElementById('input-speed').value);
+      const WFS = parseFloat(document.getElementById('input-wfs').value);
+      const d = parseFloat(document.getElementById('input-thick').value);
+
+      document.getElementById('val-current').textContent = `${I} A`;
+      document.getElementById('val-voltage').textContent = `${V} V`;
+      document.getElementById('val-speed').textContent = `${S} mm/s`;
+      document.getElementById('val-wfs').textContent = `${WFS} mm/s`;
+      document.getElementById('val-thick').textContent = `${d} mm`;
+
+      const out = predictor.predict({
+        current_A: I,
+        voltage_V: V,
+        travel_speed_mm_s: S,
+        wire_feed_mm_s: WFS,
+        wire_diameter_mm: 1.2,
+        plate_thickness_mm: d,
+        preheat_temp_C: 25.0,
+        efficiency: 0.8
+      });
+
+      document.getElementById('out-t85').textContent = `${out.thermal_and_cooling_regime.cooling_time_t_8_5_s} s`;
+      document.getElementById('out-cr').textContent = `${out.thermal_and_cooling_regime.cooling_rate_K_s} K/s`;
+      document.getElementById('out-regime').textContent = out.thermal_and_cooling_regime.thermal_regime.split(' ')[0];
+
+      document.getElementById('out-bw').textContent = `${out.bead_and_dilution_geometry.bead_width_mm} mm`;
+      document.getElementById('out-pen').textContent = `${out.bead_and_dilution_geometry.penetration_depth_mm} mm`;
+      document.getElementById('out-dil').textContent = `${out.bead_and_dilution_geometry.dilution_pct}%`;
+
+      document.getElementById('out-hv').textContent = out.mechanical_properties.vickers_hardness_HV ? `${out.mechanical_properties.vickers_hardness_HV} HV` : 'N/A';
+      document.getElementById('out-ys').textContent = out.mechanical_properties.yield_strength_MPa ? `${out.mechanical_properties.yield_strength_MPa} MPa` : 'N/A';
+      document.getElementById('out-uts').textContent = out.mechanical_properties.ultimate_tensile_strength_MPa ? `${out.mechanical_properties.ultimate_tensile_strength_MPa} MPa` : 'N/A';
+
+      document.getElementById('out-hot').textContent = out.defect_and_cracking_risks.hot_cracking_risk_pct !== null ? `${out.defect_and_cracking_risks.hot_cracking_risk_pct}%` : 'N/A';
+      document.getElementById('out-cold').textContent = out.defect_and_cracking_risks.cold_cracking_risk_pct !== null ? `${out.defect_and_cracking_risks.cold_cracking_risk_pct}%` : 'N/A';
+      document.getElementById('out-lof').textContent = `${out.defect_and_cracking_risks.lack_of_fusion_risk_pct}%`;
+      document.getElementById('out-qual').textContent = `${out.defect_and_cracking_risks.overall_weld_quality_index} / 100`;
+    }
+
+    init();
+  </script>
+</body>
+</html>
